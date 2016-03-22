@@ -10,8 +10,11 @@ class Video {
 
 
  private:
-  m_title;
-
+  String m_title;
+  int    m_year;
+  String m_actor1;
+  String m_actor2;
+  bool   m_newRelease;
 
 };
 
