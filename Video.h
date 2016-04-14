@@ -5,7 +5,10 @@
 
 class Video {
  public:
-  Video();
+  Video(string title, int year, boool newRelease, string actor1 = "", string actor2 = "");
+  
+  
+  
 
 
 
