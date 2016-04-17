@@ -16,12 +16,18 @@ class Video {
     m_actor1 = actor1;
     m_actor2 = actor2;
     m_dayRented = -1;
+    m_ID = nextID;
+    nextID++;
     
   }
   
   friend ostream& operator<<(ostream& os, const Video & vid){
     os << vid.getName() << "(" << vid.getYear() << ")";
     return os;
+  }
+
+  int getID(){
+    return(m_ID);
   }
 
   string getName() const{
@@ -31,27 +37,39 @@ class Video {
   int getYear() const{
     return(m_year);
   }
+  
+  int getDayRented(){
+    return(m_dayRented);
+  }
 
-  bool isOverDue(int currentDay){
+  bool isOverdue(int currentDay){
     if(m_dayRented == -1){
       return(false);
     }
-    if(m_dayRented-currentDay >= 14){
+    if(currentDay-m_dayRented >= 14){
       return(true);
     }
     return(false);
   }
   
+  bool isRented(){
+    if(m_dayRented==-1){
+      return(false);
+    }
+    return(true);
+  }
+  
   bool rent(int currentDay){
     if(m_dayRented == -1){
       m_dayRented = currentDay;
+      //cout << m_dayRented << endl;
       return(true);
     }
     return(false);
 
   }
 
-  bool returnVid(){
+  bool returnVideo(){
     if(m_dayRented == -1){
       return(false);
     }
@@ -62,7 +80,9 @@ class Video {
 
 
  private:
+  static int nextID;
   string m_title;
+  int    m_ID;
   int    m_year;
   string m_actor1;
   string m_actor2;

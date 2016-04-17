@@ -5,7 +5,7 @@
 
 // class definition will go here
 
-
+int Video::nextID = 0;
 
 
 #endif // protection

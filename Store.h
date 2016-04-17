@@ -12,9 +12,14 @@ using namespace std;
 class Store{
 
  public:
+  
+  int m_currentDay;
+  
   Store(int cD = 0){
     
     m_currentDay = cD;
+    m_numVideos = 0;
+    m_numCustomers = 0;
   
   }
 
@@ -22,8 +27,17 @@ class Store{
   //print videos out
   friend ostream& operator<<(ostream& os, Store & s){
     vector<Video*> temp = (s.getVideos());
+    os << "This store, as of day " << s.m_currentDay << " of operation, has the following videos:" << endl; 
     for(int i = 0; i < s.getStock(); i++){
       os << *(temp[i]);
+      if((temp[i])->isRented()){
+	os << "(Rented";
+	if((temp[i])->isOverdue(s.m_currentDay)){
+	  os << ", overdue";
+	  }
+	os << ")";
+      }
+      os << endl;
     }
     return(os);
   }
@@ -99,7 +113,7 @@ class Store{
     Video * vid = NULL;
 
     for(int i=0; i<m_numVideos; i++){
-      if(m_videos[i]->getName() == name && m_videos[i]->getYear() == year){
+      if(m_videos[i]->getName() == name && m_videos[i]->getYear() == year && m_videos[i]->isRented() == false){
 	vid = m_videos[i];
       }
     }
@@ -119,8 +133,8 @@ class Store{
       return(false);
     }
     
-    cust->rentVideo(vid, m_currentDay);
-    return(true);
+    return(cust->rentVideo(vid, m_currentDay));
+    //return(true);
 
   }
   
@@ -152,7 +166,7 @@ class Store{
   // vector of Videos
   vector<Video*> m_videos;
   int m_numVideos;
-  int m_currentDay;
+  //int m_currentDay;
 
 };
 
