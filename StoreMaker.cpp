@@ -30,12 +30,23 @@ int main(){
   else
     cout << "Jim could not rent Atlantic Swim :(" << endl;
   
-  cout << bustBlocker << endl;
+  cout << bustBlocker << endl;  
+  
   bustBlocker.changeDay(15);
+  
   //cout << aSwim->getDayRented() <<endl;
   if(aSwim->isOverdue(bustBlocker.m_currentDay))
     cout << "Atlantic Swim is overdue! Oh no!" << endl;
   cout << bustBlocker << endl;
+  bustBlocker.printAccounts();
+  bustBlocker.changeDay(2);
+
+  bustBlocker.addBD("Plane of Yesterday", 2014);
+  bustBlocker.returnVideos("Jim");
+  cout << "Jim payed his debt." << endl;
+
+  cout << bustBlocker << endl;
+  bustBlocker.printAccounts();
 
   return(0);
 }

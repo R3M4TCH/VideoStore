@@ -107,6 +107,26 @@ class Store{
     return(true);
   }
   
+  bool returnVideos(string custName){
+
+      Customer * cust = NULL;
+      for(int i=0; i<m_numCustomers; i++){
+	if(m_customers[i].getName() == custName){
+	  cust = &(m_customers[i]);
+	}
+      }
+
+      if(cust == NULL){
+	return(false);
+      }
+
+      return(cust->returnVideos());
+      //return(true);
+
+
+  }
+  
+  
   //bool rentVid(Video vid);
   bool rentVid(string name, int year, string custName){
     
@@ -146,6 +166,15 @@ class Store{
     }
     return(false);
   
+  }
+  
+  void printAccounts(){
+    Customer * curr;
+    cout << "The dues are: " << endl;
+    for(int i=0;i<m_numCustomers; i++){
+      curr = &(m_customers[i]);
+      cout << curr->getName() << ": $" <<curr->getDues(m_currentDay) << endl;
+    }
   }
 
   bool changeDay(int incriment = 1){

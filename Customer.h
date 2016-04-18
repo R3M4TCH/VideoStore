@@ -37,7 +37,7 @@ class Customer{
     
   }
   
-  bool returnVideos(Video * rental){
+  bool returnVideos(){
     if(m_numRented==0){
       return(false);
     }
@@ -54,7 +54,7 @@ class Customer{
     double dues = 0.00;
     for(int i = 0; i<m_numRented; i++){
       if((m_rentedVideos[i])->isOverdue(day)){
-	dues+=3.50;
+	dues+=3.00;
       }
     }
     
