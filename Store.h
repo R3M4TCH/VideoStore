@@ -92,6 +92,22 @@ class Store{
     m_numVideos++;
     return(true);
   }
+  
+  bool addVHS(string title, int year, bool newRelease = true, string actor1 = "\
+", string actor2 = ""){
+    for(int i=0; i<m_numVideos; i++){
+      if(m_videos[i]->getYear() == year && m_videos[i]->getName() == title){
+        return(false);
+
+      }
+    }
+
+    Video * vidToAdd = new VHS(title, year, newRelease, actor1, actor2);
+    m_videos.push_back(vidToAdd);
+    m_numVideos++;
+    return(true);
+  }
+
 
 
   bool addCustomer(string name){
